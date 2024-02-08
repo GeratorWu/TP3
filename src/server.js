@@ -5,6 +5,7 @@ import {getUser} from "./messages/userlist.js";
 import {getStringMessage} from "./messages/stringmessages.js";
 import {getNumberMessage} from "./messages/numbermessage.js";
 import {getConfigNumber, getDebug, getTimeOut, getTopic, getTypeMessage} from "./config/config.js";
+import { getNumberWord } from "./config/config.js";
 
 const configNumber = getConfigNumber()
 const typeMessage = getTypeMessage()
@@ -20,8 +21,9 @@ async function start() {
 
     setInterval(() => {
         const user = getUser()
+        const NUMBER_WORD = getNumberWord();
         const message = typeMessage === "texte" ?
-            getStringMessage(3) :
+            getStringMessage(NUMBER_WORD) :
             typeMessage === "nombre" ?
                 getNumberMessage(configNumber) :
                 "Config Error : choisir 'nombre' ou 'texte'"
